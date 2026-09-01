@@ -5,7 +5,7 @@
   "description": "A simple open-source Fort Worth ISD GPA and final grade calculator.",
   "license": "MIT",
   "author": "Raphael Azerad",
-  "homepage": "https://fwisd-gpa-calculator.mysterious-flute.workers.dev/",
+  "homepage": "https://fwisd-gpa-calculator.valiant-calf.workers.dev/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Raphael-Azerad/FWISD-GPA-Calculator.git"

@@ -26,7 +26,7 @@ git push -u origin main
 Then add this homepage URL in the GitHub repository settings:
 
 ```bash
-https://fwisd-gpa-calculator.mysterious-flute.workers.dev/
+https://fwisd-gpa-calculator.valiant-calf.workers.dev/
 ```
 
 ## Final Checks

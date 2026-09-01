@@ -2,12 +2,12 @@
 
 [![CI](https://github.com/Raphael-Azerad/FWISD-GPA-Calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphael-Azerad/FWISD-GPA-Calculator/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-green.svg)](https://fwisd-gpa-calculator.mysterious-flute.workers.dev/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-green.svg)](https://fwisd-gpa-calculator.valiant-calf.workers.dev/)
 [![Unofficial](https://img.shields.io/badge/FWISD-Unofficial-orange.svg)](#important-disclaimer)
 
 An unofficial, student-built Fort Worth ISD calculator for GPA estimates, FOCUS CSV grade breakdowns, semester grades, and required exam scores.
 
-Live site: <https://fwisd-gpa-calculator.mysterious-flute.workers.dev/>
+Live site: <https://fwisd-gpa-calculator.valiant-calf.workers.dev/>
 
 ## What It Does
 
@@ -170,7 +170,7 @@ docs               Policy notes and import notes
 
 The production app is deployed to Cloudflare Workers:
 
-<https://fwisd-gpa-calculator.mysterious-flute.workers.dev/>
+<https://fwisd-gpa-calculator.valiant-calf.workers.dev/>
 
 See [Cloudflare Deployment](docs/CLOUDFLARE_DEPLOYMENT.md).
 

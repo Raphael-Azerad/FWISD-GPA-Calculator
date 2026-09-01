@@ -2,7 +2,7 @@
 
 The current Cloudflare Worker URL is:
 
-<https://fwisd-gpa-calculator.mysterious-flute.workers.dev/>
+<https://fwisd-gpa-calculator.valiant-calf.workers.dev/>
 
 This app builds to a Cloudflare Worker with static assets. Use Cloudflare
 Workers for deployment instead of a static-only Pages upload.
@@ -44,3 +44,10 @@ npm run deploy:cloudflare
 
 Only run `wrangler login` on a machine/browser where you are comfortable
 connecting your Cloudflare account.
+
+## Temporary Deployments
+
+If you deploy without logging in, Wrangler may create a temporary Cloudflare
+preview account and a `workers.dev` URL. Claim the preview account from the URL
+printed by Wrangler before the claim window expires, or redeploy from an
+authenticated Cloudflare account for a stable production URL.
