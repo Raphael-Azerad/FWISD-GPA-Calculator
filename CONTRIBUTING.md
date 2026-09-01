@@ -21,6 +21,7 @@ Do not commit real student records, screenshots, IDs, names, class ranks, or tra
 ## Development
 
 ```bash
+nvm use
 npm install
 npm run dev
 ```
@@ -29,6 +30,7 @@ Before opening a pull request:
 
 ```bash
 npm run lint
+npm run typecheck
 npm run test
 npm run build
 ```

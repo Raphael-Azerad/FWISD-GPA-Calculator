@@ -30,9 +30,10 @@
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
     "lint:app": "oxlint app/page.tsx app/layout.tsx",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run --config vitest.config.ts",
     "test:watch": "vitest --config vitest.config.ts",
-    "format": "oxfmt"
+    "format": "oxfmt ."
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

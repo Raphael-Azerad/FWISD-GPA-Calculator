@@ -120,6 +120,12 @@ Requirements:
 - Node.js 22.13 or newer
 - npm
 
+Use the pinned Node version if you have `nvm`:
+
+```bash
+nvm use
+```
+
 Install and run:
 
 ```bash
@@ -131,6 +137,7 @@ Useful checks:
 
 ```bash
 npm run lint
+npm run typecheck
 npm run test
 npm run build
 ```
@@ -155,6 +162,7 @@ components/ui      Small set of shadcn-style UI primitives used by the app
 lib/gpa.ts         GPA, CSV, and final-grade utilities
 lib/gpa.test.ts    Anonymized formula and importer tests
 .github            CI, issue templates, Dependabot, and PR template
+.nvmrc             Node version used by local development and CI
 docs               Policy notes and import notes
 ```
 
@@ -180,6 +188,7 @@ Before opening a pull request, run:
 
 ```bash
 npm run lint
+npm run typecheck
 npm run test
 npm run build
 ```

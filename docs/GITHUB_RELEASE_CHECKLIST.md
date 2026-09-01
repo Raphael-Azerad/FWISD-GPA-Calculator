@@ -7,14 +7,14 @@ Use this before making the repository public.
 Create a new GitHub repository:
 
 - Owner: `Raphael-Azerad`
-- Repository name: `fwisd-gpa-calculator`
+- Repository name: `FWISD-GPA-Calculator`
 - Visibility: public
 - Do not initialize with a README, license, or `.gitignore`; those already exist locally.
 
 The local `origin` remote should point to:
 
 ```bash
-https://github.com/Raphael-Azerad/FWISD-GPA-Calculator.git
+git@github.com:Raphael-Azerad/FWISD-GPA-Calculator.git
 ```
 
 Push the prepared local history:
@@ -34,6 +34,7 @@ https://fwisd-gpa-calculator.mysterious-flute.workers.dev/
 - Confirm no real student CSV files, screenshots, names, IDs, class ranks, or transcripts are committed.
 - Update README badge URLs if the GitHub repository name is different from `Raphael-Azerad/FWISD-GPA-Calculator`.
 - Enable GitHub Actions.
+- Confirm the Contributors sidebar lists only the intended maintainer.
 - Enable Dependabot alerts and security updates.
 - Install the CodeRabbit GitHub app if PR review automation is wanted.
 - Add `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` as GitHub Actions

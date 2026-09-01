@@ -88,7 +88,16 @@ export const sampleFocusCsv = [
     'Weighted GPA',
   ],
   ['English I S1', '95', '0.5', 'Unweighted', 'ELAR', 'Y', '4.0', '3.8'],
-  ['Honors Geometry S1', '92', '0.5', 'Honors/Pre-AP', 'Math', 'Y', '4.0', '4.1'],
+  [
+    'Honors Geometry S1',
+    '92',
+    '0.5',
+    'Honors/Pre-AP',
+    'Math',
+    'Y',
+    '4.0',
+    '4.1',
+  ],
   ['AP Biology S1', '88', '0.5', 'AP/IB/DC', 'Science', 'Y', '3.0', '4.4'],
   [
     'World Geography S1',
@@ -135,7 +144,9 @@ export function weightedPoints(grade: number, tier: Tier) {
 }
 
 export function courseWeightedPoints(course: Course) {
-  return course.sourceWeightedPoints ?? weightedPoints(course.grade, course.tier);
+  return (
+    course.sourceWeightedPoints ?? weightedPoints(course.grade, course.tier)
+  );
 }
 
 export function unweightedPoints(grade: number) {
@@ -238,17 +249,20 @@ export function getAutoCoreLimit(courses: Course[]) {
 export function calculateCoreRankGpa(courses: Course[], limit: number) {
   const selected: Course[] = [];
 
-  (['elar', 'math', 'science', 'socialStudies'] as Subject[]).forEach((subject) => {
-    const subjectCourses = courses
-      .filter((course) => course.counts && course.subject === subject)
-      .sort((a, b) => {
-        const weightedDiff = courseWeightedPoints(b) - courseWeightedPoints(a);
-        return weightedDiff || b.grade - a.grade;
-      })
-      .slice(0, limit);
+  (['elar', 'math', 'science', 'socialStudies'] as Subject[]).forEach(
+    (subject) => {
+      const subjectCourses = courses
+        .filter((course) => course.counts && course.subject === subject)
+        .sort((a, b) => {
+          const weightedDiff =
+            courseWeightedPoints(b) - courseWeightedPoints(a);
+          return weightedDiff || b.grade - a.grade;
+        })
+        .slice(0, limit);
 
-    selected.push(...subjectCourses);
-  });
+      selected.push(...subjectCourses);
+    },
+  );
 
   const result = calculateGpa(selected);
 
@@ -374,7 +388,11 @@ function parseGradeValue(value: string | undefined) {
 function inferTier(...values: string[]): Tier {
   const text = values.join(' ').toLowerCase();
 
-  if (/\b(ap|advanced placement|onramps|dual credit|dual enrollment|dc|ib)\b/.test(text)) {
+  if (
+    /\b(ap|advanced placement|onramps|dual credit|dual enrollment|dc|ib)\b/.test(
+      text,
+    )
+  ) {
     return 'tier1';
   }
   if (/\b(honors|honour|pre[-\s]?ib|pre[-\s]?ap)\b/.test(text)) {
@@ -387,16 +405,28 @@ function inferTier(...values: string[]): Tier {
 function inferSubject(...values: string[]): Subject {
   const text = values.join(' ').toLowerCase();
 
-  if (/\b(english|ela|elar|reading|writing|literature|composition)\b/.test(text)) {
+  if (
+    /\b(english|ela|elar|reading|writing|literature|composition)\b/.test(text)
+  ) {
     return 'elar';
   }
-  if (/\b(algebra|geometry|calculus|statistics|math|precal|pre-cal)\b/.test(text)) {
+  if (
+    /\b(algebra|geometry|calculus|statistics|math|precal|pre-cal)\b/.test(text)
+  ) {
     return 'math';
   }
-  if (/\b(biology|chemistry|physics|science|environmental|anatomy|astronomy)\b/.test(text)) {
+  if (
+    /\b(biology|chemistry|physics|science|environmental|anatomy|astronomy)\b/.test(
+      text,
+    )
+  ) {
     return 'science';
   }
-  if (/\b(history|government|economics|geography|social studies|world history|us history)\b/.test(text)) {
+  if (
+    /\b(history|government|economics|geography|social studies|world history|us history)\b/.test(
+      text,
+    )
+  ) {
     return 'socialStudies';
   }
 
@@ -406,7 +436,11 @@ function inferSubject(...values: string[]): Subject {
 function inferCounts(...values: string[]) {
   const text = values.join(' ').toLowerCase();
 
-  if (/\b(no|false|excluded|not included|local credit|pass\/fail|pass fail|cbe|credit by exam|correspondence)\b/.test(text)) {
+  if (
+    /\b(no|false|excluded|not included|local credit|pass\/fail|pass fail|cbe|credit by exam|correspondence)\b/.test(
+      text,
+    )
+  ) {
     return false;
   }
 
@@ -424,7 +458,11 @@ function parseFocusCounts(value: string | undefined, fallbackText: string) {
 function parseTier(value: string | undefined, fallbackText: string) {
   const text = `${value ?? ''} ${fallbackText}`.toLowerCase();
 
-  if (/ap\/ib\/dc|advanced placement|dual credit|onramps|international baccalaureate/.test(text)) {
+  if (
+    /ap\/ib\/dc|advanced placement|dual credit|onramps|international baccalaureate/.test(
+      text,
+    )
+  ) {
     return 'tier1';
   }
   if (/honors\/pre-ap|honors|pre[-\s]?ap|pre[-\s]?ib/.test(text)) {
@@ -562,8 +600,14 @@ export function importCoursesFromCsv(text: string, fileName: string) {
     const tier = parseTier(getCell(row, tierIndex), rowText);
     const subject = parseSubject(getCell(row, subjectIndex), rowText);
     const counts = parseFocusCounts(getCell(row, countsIndex), rowText);
-    const sourceWeightedPoints = parseNumeric(getCell(row, sourceWeightedIndex), NaN);
-    const sourceUnweightedPoints = parseNumeric(getCell(row, sourceUnweightedIndex), NaN);
+    const sourceWeightedPoints = parseNumeric(
+      getCell(row, sourceWeightedIndex),
+      NaN,
+    );
+    const sourceUnweightedPoints = parseNumeric(
+      getCell(row, sourceUnweightedIndex),
+      NaN,
+    );
 
     imported.push({
       id: index + 1,
@@ -636,9 +680,7 @@ export function makeExportCsv(courses: Course[]) {
 
   return rows
     .map((row) =>
-      row
-        .map((cell) => `"${String(cell).replace(/"/g, '""')}"`)
-        .join(','),
+      row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(','),
     )
     .join('\n');
 }
@@ -661,9 +703,14 @@ export function semesterGrade(mode: TermMode, values: Record<string, number>) {
   return (values.semester1 + values.semester2) / 2;
 }
 
-export function requiredExamScore(mode: TermMode, values: Record<string, number>) {
+export function requiredExamScore(
+  mode: TermMode,
+  values: Record<string, number>,
+) {
   if (mode === 'sixWeeks') {
-    return values.target * 7 - values.six1 * 2 - values.six2 * 2 - values.six3 * 2;
+    return (
+      values.target * 7 - values.six1 * 2 - values.six2 * 2 - values.six3 * 2
+    );
   }
 
   if (mode === 'nineWeeks') {
