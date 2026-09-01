@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'en-US'
+tone_instructions: 'Be concise, practical, and careful with student-data privacy.'
+
+reviews:
+  profile: 'chill'
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  review_details: true
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    - '!**/node_modules/**'
+    - '!**/.next/**'
+    - '!**/.vinext/**'
+    - '!**/dist/**'
+    - '!**/.wrangler/**'
+    - '!**/package-lock.json'
+  tools:
+    markdownlint:
+      enabled: true
+  path_instructions:
+    - path: 'lib/gpa.ts'
+      instructions: 'Treat GPA, CSV import, and final-grade changes as policy-sensitive. Ask for tests or anonymized examples when behavior changes.'
+    - path: 'lib/**/*.test.ts'
+      instructions: 'Prefer anonymized fixtures. Real student names, IDs, raw transcripts, and class-rank screenshots should not be committed.'
+    - path: 'docs/**'
+      instructions: 'Check that policy claims are labeled as unofficial and point to public FWISD or campus sources when possible.'
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - 'CONTRIBUTING.md'
+      - 'docs/*.md'

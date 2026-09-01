@@ -1,0 +1,1 @@
+export const reportMistakeUrl = '/report';

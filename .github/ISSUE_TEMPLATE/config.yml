@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Privacy reminder
+    url: https://fwisd-gpa-calculator.mysterious-flute.workers.dev/privacy
+    about: Remove student names, IDs, ranks, screenshots, and raw CSV files before reporting a problem.
